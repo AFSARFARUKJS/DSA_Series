@@ -1,0 +1,59 @@
+class Solution 
+{
+    int cnt =0;
+    public int reversePairs(int[] nums)
+    {
+       mergeSort(nums,0,nums.length-1);     
+
+       return cnt;
+    }
+    void merge(int[] ar,int l,int m ,int h){
+        int n1 = m-l+1;
+        int n2 = h-m;
+        int f1[] = new int[n1];
+        int f2[] = new int[n2];
+        for(int i=0;i<n1;i++){
+            f1[i]=ar[l+i]; 
+        }
+        for(int j=0;j<n2;j++){
+            f2[j]=ar[m+1+j];
+        }
+        int i=0,j=0;
+        int k=l;
+        while(i<n1 && j<n2){
+            if(f1[i]<f2[j]){
+                ar[k++]=f1[i++];
+            }
+            else{
+                ar[k++]=f2[j++];
+            }
+        }
+        while(i<n1){
+            ar[k++]=f1[i++];
+        }
+        while(j<n2){
+            ar[k++]=f2[j++];
+        }
+      
+
+    }
+    void count(int[]ar ,int l,int m,int h){
+        int r= m+1;
+        for(int i=l;i<=m;i++){
+            while(r<=h &&(long) (ar[i])>2L*(long)(ar[r])){
+                r++;
+            }
+            cnt+=(r-(m+1));
+        }
+
+    }
+    void mergeSort(int ar[],int l,int r){
+        if(l<r){
+            int mid = (l+r)/2;
+            mergeSort(ar,l,mid);
+            mergeSort(ar,mid+1,r);
+            count(ar,l,mid,r);
+            merge(ar,l,mid,r);
+        }
+    }
+}
