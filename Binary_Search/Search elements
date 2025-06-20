@@ -1,0 +1,18 @@
+class Solution {
+    public int search(int[] nums, int target) {
+       return bs(nums,0,nums.length-1,target);
+    }
+    int bs(int[]ar,int st,int end,int t){
+        int ind = -1 ;
+        while(st<=end){
+            int mid = (st+end)/2;
+
+            if(ar[mid]==t) {ind=mid;break;}
+            else if(ar[mid]<t) st=mid+1;
+            else end = mid-1;
+          
+        }
+   
+        return ind;
+    }
+}
