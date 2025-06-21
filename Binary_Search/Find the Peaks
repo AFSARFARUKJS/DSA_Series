@@ -1,0 +1,15 @@
+class Solution {
+    public List<Integer> findPeaks(int[] nums) {
+        int n = nums.length;
+    List<Integer> lst = new ArrayList<>();
+    for(int i=1;i<n-1;i++){
+        int prev = (n+i-1)%n;
+        int next = (i+1)%n;
+        if(nums[i]>nums[prev] && nums[i]>nums[next] ){
+              lst.add(i);
+        }
+      
+    }
+    return lst;
+    }
+}
